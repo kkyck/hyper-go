@@ -1,0 +1,76 @@
+# ════════════════════════════════════════════════════════════════════════
+# hyper-go — .gitignore
+#
+# Only runtime state and build artifacts are excluded. The source tree,
+# .env.example and the docs ARE tracked.
+#
+#   .env            → never push (it holds your credentials)
+#   data/           → never push (it holds your runtime state)
+# ════════════════════════════════════════════════════════════════════════
+
+# ─── Environment secrets (NEVER push) ─────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ─── Runtime state (NEVER push) ───────────────────────────────────────
+# The SQLite database holds the WhatsApp session AND the bot tables.
+data/
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.db.bak
+
+# Older session-store file names.
+sessions.db
+sessions.db-shm
+sessions.db-wal
+sessions.db-journal
+
+# ─── Build artifacts ───────────────────────────────────────────────────
+bot
+bot.exe
+bot-amd64*
+bot-arm64*
+*.bak
+.build/
+*.test
+*.out
+*.prof
+*.pprof
+*.log
+
+# ─── Process manager ──────────────────────────────────────────────────
+.pm2/
+*.pm2/
+
+# ─── Node (only if the web UI ever uses it) ───────────────────────────
+node_modules/
+package-lock.json
+yarn.lock
+
+# ─── Editor / IDE ─────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ─── Python tooling ───────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# ─── Generated captures & debug dumps ─────────────────────────────────
+debug/
+*.capture.go
+CRM_RAW_*.json
+
+# ─── Local archives (use `make backup-archive` deliberately) ──────────
+archive-*.tar.gz
+*.tar.gz
